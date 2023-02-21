@@ -5,7 +5,7 @@
     stages {
         stage('Git Clone') {
             steps {
-               git branch: 'main', url: 'https://github.com/asheik01/spring-petclinic.git'
+                git branch: '/master', url: 'https://github.com/asheik01/spring-petclinic.git'
             }
         }
         stage('Building Code'){
@@ -13,16 +13,15 @@
                 sh './mvnw package'
             }
         }
-        stage('downloading artifacts'){
-            steps{archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false}
+        stage('Downloading artifacts'){
+            steps{
+                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+            }
+        }
+                stage('unit test results'){
+            steps{
+                junit 'target/surefire-reports/*.xml'
+            }
         }
     }
-   stage('unit test results'){
-    steps{  
-            junit 'target/surefire-reports/*.xml'
-         }
-         
-   }
-        
-        }
-
+}  

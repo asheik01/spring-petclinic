@@ -5,7 +5,7 @@
     stages {
         stage('Git Clone') {
             steps {
-                git branch: '/master', url: 'https://github.com/asheik01/spring-petclinic.git'
+                git branch: '/main', url: 'https://github.com/asheik01/spring-petclinic.git'
             }
         }
         stage('Building Code'){
